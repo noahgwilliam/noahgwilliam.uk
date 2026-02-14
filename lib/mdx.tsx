@@ -1,15 +1,9 @@
 import matter from "gray-matter"
-import { Octokit } from "@octokit/rest"
 import { cacheLife, cacheTag } from "next/cache"
+import { readdir, readFile } from "fs/promises"
+import path from "path"
 
-const owner = process.env.GITHUB_REPO_OWNER || ""
-const repo = process.env.GITHUB_REPO_NAME || ""
-
-const octokit = new Octokit({
-	auth: process.env.GITHUB_TOKEN,
-})
-const contentPath = "content"
-const branch = "main"
+const contentPath = path.join(process.cwd(), "content")
 
 export interface PostMetadata {
 	title: string
@@ -25,43 +19,29 @@ export interface Post extends PostMetadata {
 }
 
 function filenameToSlug(filename: string): string {
-	return filename.replace(".mdx", "").replace(`${contentPath}/`, "")
+	return filename.replace(".mdx", "")
 }
 
 function slugToFilename(slug: string): string {
-	return `${contentPath}/${slug}.mdx`
+	return path.join(contentPath, `${slug}.mdx`)
 }
 
 async function getContentFiles(): Promise<Array<{ name: string; path: string }>> {
-	const { data } = await octokit.repos.getContent({
-		owner,
-		repo,
-		path: contentPath,
-		ref: branch,
-	})
-
-	if (!Array.isArray(data)) {
+	try {
+		const files = await readdir(contentPath)
+		return files
+			.filter((file) => file.endsWith(".mdx"))
+			.map((file) => ({
+				name: file,
+				path: path.join(contentPath, file),
+			}))
+	} catch {
 		return []
 	}
-
-	return data
-		.filter((file) => file.type === "file" && file.name.endsWith(".mdx"))
-		.map((file) => ({ name: file.name, path: file.path }))
 }
 
-async function getFileContent(path: string): Promise<string> {
-	const { data } = await octokit.repos.getContent({
-		owner,
-		repo,
-		path,
-		ref: branch,
-	})
-
-	if ("content" in data && data.content) {
-		return Buffer.from(data.content, "base64").toString("utf-8")
-	}
-
-	throw new Error(`Failed to fetch content for ${path}`)
+async function getFileContent(filePath: string): Promise<string> {
+	return await readFile(filePath, "utf-8")
 }
 
 export async function getFirstPostSlug(): Promise<string | null> {
