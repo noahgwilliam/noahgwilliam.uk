@@ -1,0 +1,47 @@
+{
+	"name": "noahgwilliam.uk",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"build": "next build",
+		"dev": "next dev",
+		"start": "next start",
+		"knip": "knip"
+	},
+	"dependencies": {
+		"@octokit/rest": "22.0.1",
+		"@radix-ui/react-slot": "1.1.1",
+		"@vercel/analytics": "1.3.1",
+		"autoprefixer": "^10.4.24",
+		"babel-plugin-react-compiler": "^1.0.0",
+		"clsx": "^2.1.1",
+		"gray-matter": "4.0.3",
+		"msw": "^2.12.4",
+		"next": "16.1.0",
+		"next-mdx-remote-client": "2.1.7",
+		"react": "19.2.0",
+		"react-dom": "19.2.0",
+		"rehype-pretty-code": "^0.14.1",
+		"shiki": "^3.20.0",
+		"tailwind-merge": "^3.3.1"
+	},
+	"devDependencies": {
+		"@tailwindcss/postcss": "^4.1.9",
+		"@types/node": "22",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"knip": "^5.76.0",
+		"postcss": "^8.5",
+		"postcss-load-config": "^6.0.1",
+		"tailwindcss": "^4.1.9",
+		"tw-animate-css": "1.3.3",
+		"typescript": "^5.9.3"
+	},
+	"prettier": {
+		"useTabs": true,
+		"semi": false,
+		"trailingComma": "all",
+		"printWidth": 100
+	},
+	"packageManager": "pnpm@10.25.0+sha512.5e82639027af37cf832061bcc6d639c219634488e0f2baebe785028a793de7b525ffcd3f7ff574f5e9860654e098fe852ba8ac5dd5cefe1767d23a020a92f501"
+}
