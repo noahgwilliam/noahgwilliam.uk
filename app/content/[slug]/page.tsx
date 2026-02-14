@@ -7,9 +7,6 @@ import { NextPost } from "@/components/next-post"
 import type { Metadata } from "next"
 import { cacheTag, cacheLife } from "next/cache"
 
-// This route is optional - only generate if there are posts
-export const dynamicParams = true
-
 export async function generateStaticParams() {
 	const posts = await getAllPosts()
 	return posts.map((post) => ({ slug: post.slug }))
