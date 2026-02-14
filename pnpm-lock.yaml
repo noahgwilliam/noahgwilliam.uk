@@ -20,6 +20,9 @@ importers:
       babel-plugin-react-compiler:
         specifier: ^1.0.0
         version: 1.0.0
+      class-variance-authority:
+        specifier: ^0.7.1
+        version: 0.7.1
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
@@ -35,6 +38,9 @@ importers:
       next-mdx-remote-client:
         specifier: 2.1.7
         version: 2.1.7(@types/react@19.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)(unified@11.0.5)
+      next-themes:
+        specifier: ^0.4.6
+        version: 0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
         specifier: 19.2.0
         version: 19.2.0
@@ -759,6 +765,9 @@ packages:
     resolution: {integrity: sha512-+IxzY9BZOQd/XuYPRmrvEVjF/nqj5kgT4kEq7VofrDoM1MxoRjEWkrCC3EtLi59TVawxTAn+orJwFQcrqEN1+g==}
     engines: {node: '>=18'}
 
+  class-variance-authority@0.7.1:
+    resolution: {integrity: sha512-Ka+9Trutv7G8M6WT6SeiRWz792K5qEqIGEGzXKhAE6xOWAY6pPH8U+9IY3oCMv6kqTmLsv7Xh/2w2RigkePMsg==}
+
   cli-width@4.1.0:
     resolution: {integrity: sha512-ouuZd4/dm2Sw5Gmqy6bGyNNNe1qt9RpmxveLSO7KcgsTnU7RXfsw+/bukWGo1abgBiMAic068rclZsO4IWmmxQ==}
     engines: {node: '>= 12'}
@@ -1253,6 +1262,12 @@ packages:
     peerDependencies:
       react: ^19.1
       react-dom: ^19.1
+
+  next-themes@0.4.6:
+    resolution: {integrity: sha512-pZvgD5L0IEvX5/9GWyHMf3m8BKiVQwsCMHfoFosXtXBMnaS0ZnIJ9ST4b4NqLVKDEm8QBxoNNGNaBv2JNF6XNA==}
+    peerDependencies:
+      react: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
+      react-dom: ^16.8 || ^17 || ^18 || ^19 || ^19.0.0-rc
 
   next@16.1.0:
     resolution: {integrity: sha512-Y+KbmDbefYtHDDQKLNrmzE/YYzG2msqo2VXhzh5yrJ54tx/6TmGdkR5+kP9ma7i7LwZpZMfoY3m/AoPPPKxtVw==}
@@ -2250,6 +2265,10 @@ snapshots:
 
   chownr@3.0.0: {}
 
+  class-variance-authority@0.7.1:
+    dependencies:
+      clsx: 2.1.1
+
   cli-width@4.1.0: {}
 
   client-only@0.0.1: {}
@@ -2984,6 +3003,11 @@ snapshots:
       - '@types/react'
       - supports-color
       - unified
+
+  next-themes@0.4.6(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
+    dependencies:
+      react: 19.2.0
+      react-dom: 19.2.0(react@19.2.0)
 
   next@16.1.0(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0):
     dependencies:
