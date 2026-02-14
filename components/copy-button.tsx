@@ -9,7 +9,7 @@ export function CopyButton() {
       size="icon"
       className="p-1 size-7"
       aria-label="Copy snippet to clipboard"
-      onClick={(e) => {
+      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
         const code = e.currentTarget.parentElement?.nextElementSibling?.textContent
         if (code) {
           navigator.clipboard.writeText(code)
