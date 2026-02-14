@@ -7,12 +7,12 @@ import { NextPost } from "@/components/next-post"
 import type { Metadata } from "next"
 import { cacheTag, cacheLife } from "next/cache"
 
-// Generate a single static param is all we need
-export async function generateStaticParams() {
-	const slug = await getFirstPostSlug()
-	if (!slug) return []
+// This route is optional - only generate if there are posts
+export const dynamicParams = true
 
-	return [{ slug }]
+export async function generateStaticParams() {
+	const posts = await getAllPosts()
+	return posts.map((post) => ({ slug: post.slug }))
 }
 
 export async function generateMetadata({
