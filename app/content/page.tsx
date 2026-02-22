@@ -24,7 +24,7 @@ export default function ContentIndexPage() {
 						<div className="space-y-8">
 							<article className="group">
 								<Link
-									href="/content/roles/FlutterUKI"
+									href="/content/experience/FlutterUKI"
 									className="block"
 								>
 									<h2 className="group-hover:opacity-70 transition-opacity text-2xl font-medium">
@@ -41,7 +41,7 @@ export default function ContentIndexPage() {
 
 							<article className="group">
 								<Link
-									href="/content/roles/BAEDigitalIntelligence"
+									href="/content/experience/BAEDigitalIntelligence"
 									className="block"
 								>
 									<h2 className="group-hover:opacity-70 transition-opacity text-2xl font-medium">
@@ -52,6 +52,17 @@ export default function ContentIndexPage() {
 									</time>
 									<p className="text-base text-muted-foreground text-pretty leading-relaxed mt-2">
 										Working on digital intelligence solutions and infrastructure.
+									</p>
+								</Link>
+							</article>
+
+							<article className="group">
+								<Link
+									href="/content/experience"
+									className="block"
+								>
+									<p className="text-base text-muted-foreground text-pretty leading-relaxed group-hover:opacity-70 transition-opacity">
+										View all Professional Experiences
 									</p>
 								</Link>
 							</article>

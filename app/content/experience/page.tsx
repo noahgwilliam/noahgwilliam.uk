@@ -2,11 +2,11 @@ import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-	title: "Roles | Noah Gwilliam",
+	title: "Professional Experience | Noah Gwilliam",
 	description: "My professional roles and experience",
 }
 
-export default function RolesPage() {
+export default function ExperiencePage() {
 	return (
 		<div>
 			<main className="max-w-4xl mx-auto px-6 py-8">
@@ -19,12 +19,12 @@ export default function RolesPage() {
 				</Link>
 
 				<div className="mt-8 space-y-8">
-					<h1 className="text-2xl font-medium">Professional Roles</h1>
+					<h1 className="text-2xl font-medium">Professional Experience</h1>
 					
 					<div className="space-y-6">
 						<article>
 							<Link
-								href="/content/roles/FlutterUKI"
+								href="/content/experience/FlutterUKI"
 								className="block hover:opacity-70 transition-opacity"
 							>
 								<h2 className="text-xl font-medium">Flutter UKI</h2>
@@ -34,7 +34,7 @@ export default function RolesPage() {
 
 						<article>
 							<Link
-								href="/content/roles/BAEDigitalIntelligence"
+								href="/content/experience/BAEDigitalIntelligence"
 								className="block hover:opacity-70 transition-opacity"
 							>
 								<h2 className="text-xl font-medium">BAE Digital Intelligence</h2>
