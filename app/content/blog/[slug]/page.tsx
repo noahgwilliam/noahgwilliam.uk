@@ -4,6 +4,18 @@ import { Suspense } from "react"
 import { client } from "@/lib/sanity"
 import type { BlogPost } from "@/lib/sanity"
 
+export async function generateStaticParams() {
+  try {
+    const posts = await client.fetch<BlogPost[]>('*[_type == "blogPost"]')
+    return posts.map((post) => ({
+      slug: post.slug.current,
+    }))
+  } catch (error) {
+    console.error('Error generating static params:', error)
+    return []
+  }
+}
+
 async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
     const query = `*[_type == "blogPost" && slug.current == $slug][0]`
