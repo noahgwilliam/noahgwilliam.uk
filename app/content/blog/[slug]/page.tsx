@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation"
 import Link from "next/link"
+import { Suspense } from "react"
 import { client } from "@/lib/sanity"
 import type { BlogPost } from "@/lib/sanity"
 
@@ -13,17 +14,59 @@ async function getBlogPost(slug: string): Promise<BlogPost | null> {
   }
 }
 
+async function BlogPostContent({ slug }: { slug: string }) {
+  const post = await getBlogPost(slug)
+
+  if (!post) {
+    notFound()
+  }
+
+  return (
+    <article className="mt-8">
+      <h1 className="text-4xl font-medium mb-4">{post.title}</h1>
+      
+      <time className="text-sm text-muted-foreground block mb-8">
+        {new Date(post.publishedAt).toLocaleDateString('en-US', {
+          year: 'numeric',
+          month: 'long',
+          day: 'numeric',
+        })}
+      </time>
+
+      {post.excerpt && (
+        <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
+          {post.excerpt}
+        </p>
+      )}
+
+      {post.content && (
+        <div className="prose prose-neutral dark:prose-invert max-w-none">
+          <p className="whitespace-pre-wrap">{post.content}</p>
+        </div>
+      )}
+
+      {post.tags && post.tags.length > 0 && (
+        <div className="mt-8 flex gap-2 flex-wrap">
+          {post.tags.map((tag) => (
+            <span
+              key={tag}
+              className="px-3 py-1 text-sm bg-muted text-muted-foreground rounded-full"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </article>
+  )
+}
+
 export default async function BlogPostPage({
   params,
 }: {
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const post = await getBlogPost(slug)
-
-  if (!post) {
-    notFound()
-  }
 
   return (
     <div>
@@ -36,42 +79,9 @@ export default async function BlogPostPage({
           <span>Back to Blog</span>
         </Link>
 
-        <article className="mt-8">
-          <h1 className="text-4xl font-medium mb-4">{post.title}</h1>
-          
-          <time className="text-sm text-muted-foreground block mb-8">
-            {new Date(post.publishedAt).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric',
-            })}
-          </time>
-
-          {post.excerpt && (
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              {post.excerpt}
-            </p>
-          )}
-
-          {post.content && (
-            <div className="prose prose-neutral dark:prose-invert max-w-none">
-              <p className="whitespace-pre-wrap">{post.content}</p>
-            </div>
-          )}
-
-          {post.tags && post.tags.length > 0 && (
-            <div className="mt-8 flex gap-2 flex-wrap">
-              {post.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="px-3 py-1 text-sm bg-muted text-muted-foreground rounded-full"
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-        </article>
+        <Suspense fallback={<div className="mt-8 text-muted-foreground">Loading...</div>}>
+          <BlogPostContent slug={slug} />
+        </Suspense>
       </main>
     </div>
   )
