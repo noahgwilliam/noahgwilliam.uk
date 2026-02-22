@@ -2,8 +2,6 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { getExperiences, getBlogPosts } from "@/lib/sanity"
 
-export const dynamic = 'force-dynamic'
-
 export const metadata: Metadata = {
 	title: "Content | Noah Gwilliam",
 	description: "My professional experiences and roles",
