@@ -4,17 +4,28 @@ import { Suspense } from "react"
 import { client } from "@/lib/sanity"
 import type { Experience } from "@/lib/sanity"
 
-export const dynamicParams = true
-
 export async function generateStaticParams() {
   try {
     const experiences = await client.fetch<Experience[]>('*[_type == "experience"]')
+    
+    // If no experiences in Sanity, return hardcoded ones
+    if (experiences.length === 0) {
+      return [
+        { slug: 'FlutterUKI' },
+        { slug: 'BAEDigitalIntelligence' },
+      ]
+    }
+    
     return experiences.map((exp) => ({
       slug: exp.slug.current,
     }))
   } catch (error) {
     console.error('Error generating static params:', error)
-    return []
+    // Return hardcoded fallback on error
+    return [
+      { slug: 'FlutterUKI' },
+      { slug: 'BAEDigitalIntelligence' },
+    ]
   }
 }
 

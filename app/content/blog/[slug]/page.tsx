@@ -4,17 +4,21 @@ import { Suspense } from "react"
 import { client } from "@/lib/sanity"
 import type { BlogPost } from "@/lib/sanity"
 
-export const dynamicParams = true
-
 export async function generateStaticParams() {
   try {
     const posts = await client.fetch<BlogPost[]>('*[_type == "blogPost"]')
+    
+    // Next.js 16 requires at least one entry
+    if (posts.length === 0) {
+      return [{ slug: 'placeholder' }]
+    }
+    
     return posts.map((post) => ({
       slug: post.slug.current,
     }))
   } catch (error) {
     console.error('Error generating static params:', error)
-    return []
+    return [{ slug: 'placeholder' }]
   }
 }
 
