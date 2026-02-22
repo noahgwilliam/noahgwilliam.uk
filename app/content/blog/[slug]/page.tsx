@@ -4,6 +4,8 @@ import { Suspense } from "react"
 import { client } from "@/lib/sanity"
 import type { BlogPost } from "@/lib/sanity"
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
   try {
     const posts = await client.fetch<BlogPost[]>('*[_type == "blogPost"]')

@@ -4,6 +4,8 @@ import { Suspense } from "react"
 import { client } from "@/lib/sanity"
 import type { Experience } from "@/lib/sanity"
 
+export const dynamicParams = true
+
 export async function generateStaticParams() {
   try {
     const experiences = await client.fetch<Experience[]>('*[_type == "experience"]')
