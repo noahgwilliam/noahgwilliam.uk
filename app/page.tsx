@@ -1,5 +1,6 @@
 import Link from "next/link"
 import type { Metadata } from "next"
+import { ThemeToggle } from "./components/theme-toggle"
 
 export const metadata: Metadata = {
 	title: "Noah Gwilliam",
@@ -9,18 +10,23 @@ export const metadata: Metadata = {
 export default function HomePage() {
 	return (
 		<main className="max-w-4xl mx-auto px-6 py-16">
-			<h1 className="text-2xl font-medium">Noah Gwilliam</h1>
-			<p className="mt-3 text-muted-foreground">
-				Platform Engineer at{" "}
-				<a
-					href="https://flutter.com"
-					className="text-foreground hover:text-accent transition-colors"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					Flutter UKI
-				</a>
-			</p>
+			<div className="flex justify-between items-start">
+				<div>
+					<h1 className="text-2xl font-medium">Noah Gwilliam</h1>
+					<p className="mt-3 text-muted-foreground">
+						Platform Engineer at{" "}
+						<a
+							href="https://flutter.com"
+							className="text-foreground hover:text-accent transition-colors"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							Flutter UKI
+						</a>
+					</p>
+				</div>
+				<ThemeToggle />
+			</div>
 			<nav className="mt-8 flex items-center gap-6 text-sm">
 				<Link
 					href="/content"
