@@ -68,7 +68,7 @@ export default function RootLayout({
 								noahgwilliam
 							</a>
 							<a
-								href="https://www.linkedin.com/in/noah-gwilliam-583b67174/"
+								href="https://www.linkedin.com/in/noah-gwilliam/"
 								className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
 								target="_blank"
 								rel="noopener noreferrer"
