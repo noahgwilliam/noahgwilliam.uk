@@ -28,6 +28,7 @@
 		"react": "19.2.0",
 		"react-dom": "19.2.0",
 		"rehype-pretty-code": "^0.14.1",
+		"resend": "^6.9.2",
 		"sanity": "^3.99.0",
 		"shiki": "^3.20.0",
 		"styled-components": "^6.3.11",
