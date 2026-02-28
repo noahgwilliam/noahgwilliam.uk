@@ -68,15 +68,7 @@ export default function HomePage() {
 					</svg>
 					noah-gwilliam
 				</a>
-				<Link
-					href="/contact"
-					className="inline-flex items-center gap-1.5 text-muted-foreground hover:text-foreground transition-colors"
-				>
-					<svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-						<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-					</svg>
-					Contact me
-				</Link>
+
 			</nav>
 		</main>
 	)
